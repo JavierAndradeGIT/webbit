@@ -65,3 +65,7 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "foreman", "~> 0.88.1"
+
+gem "inline_svg", "~> 1.10"
