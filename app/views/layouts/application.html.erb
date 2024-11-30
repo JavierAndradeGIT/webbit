@@ -84,11 +84,11 @@
             <div class="mr-3">
               <% if user_signed_in? %>
                 <%= link_to new_submission_path, class: "px-3 py-4 rounded hover:bg-indigo-50 bg-white block" do %>
-                  <%= render_svg "icons/create", styles: "group-  hover:text-indigo-600 fill-current text-gray-600", title: "Create submission" %>
+                  <%= render_svg "icons/create", styles: "group-hover:text-indigo-600 fill-current text-gray-600", title: "Create submission" %>
                 <% end %>
               <% else %>
                 <%= link_to "Login", new_user_session_path, class: "btn btn-outline mr-4" %>
-                <%= link_to "Sign up", new_user_registration_path, class: "btn btn-indigo     mr-2" %>
+                <%= link_to "Sign up", new_user_registration_path, class: "btn btn-indigo mr-2" %>
               <% end %>
             </div>
             <% if user_signed_in? %>
@@ -103,7 +103,7 @@
                   <ul data-dropdown-target="menu" class="hidden absolute top-2 -right-4 bg-white min-w-[200px] border
                     border-gray-400 rounded shadow-lg">
                     <li>
-                      <%= link_to "#", class:"hover:bg-indigo-50 hover:text-indigo-600 text-gray-600 no-underline block py-3 px-4 flex 
+                      <%= link_to profile_path(current_user), class:"hover:bg-indigo-50 hover:text-indigo-600 text-gray-600 no-underline block py-3 px-4 flex 
                       items-center group rounded-t" do %>
                         <%= render_svg "icons/user", styles: "w-5 h-5 fill-current group-hover:text-indigo-600 text-gray-600 mr-3" %>
                         My profile

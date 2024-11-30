@@ -12,7 +12,7 @@
       <% end %>
     </div>
     <div class="flex-1">
-      <p class="text-sm text-gray-600 mb-3">Posted by <%= @submission.user.username  %> <%= time_ago_in_words(@submission.created_at) %> ago </p>
+      <p class="text-sm text-gray-600 mb-3">Posted by <%= link_to @submission.user.username, profile_path(@submission.user), class: "text-indigo-600 underline hover:text-indigo-400"  %> <%= time_ago_in_words(@submission.created_at) %> ago </p> 
       <h1 class="font-bold text-3xl mb-6"><%= @submission.title %></h1>
       <div class="prose prose-lg prose-indigo mb-6">
         <%= simple_format @submission.body %>
@@ -21,7 +21,7 @@
       <div class="flex items-center space-x-5 mt-6">
         <div class="flex items-center space-x-2 mr-2">
           <%= render_svg "icons/conversation", styles: "w-5 fill-current text-gray-500"  %>
-          <p>3 comments</p>
+          <p id="<%= dom_id(@submission)%>_comment_count"><%= pluralize(@submission.comments.size, "comment") %></p>
         </div>
         <% if author_of?(@submission) %>
           <%= link_to edit_submission_path(@submission), class: "group" do %>
@@ -47,7 +47,7 @@
         <%= link_to "Login to reply", new_user_session_path, class:"text-indigo-600 underline" %>
       </div>
     <% end %>
-    <h3 class="font-bold mt-6">Comments</h3>
+    <h3 id="comment_section" class="font-bold mt-6">Comments</h3>
     <div id="<%= dom_id(@submission) %>_comments">
       <% if @submission.comments.any? %>
         <%= render @submission.comments %>
