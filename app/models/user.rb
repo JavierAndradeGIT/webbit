@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :communities
   has_many :submissions, dependent: :destroy
+  has_many :comments
+
 
 
   validates_uniqueness_of :username

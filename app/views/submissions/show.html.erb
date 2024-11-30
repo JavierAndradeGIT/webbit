@@ -1,17 +1,15 @@
 <% content_for :community_label, "w/#{@submission.community.name}" %>
-
-<%= render "communities/header", community: @submission.community %>  
-
+<%= render "communities/header", community: @submission.community %>
 <% content_for :primary_content do %>
   <div class="flex flex-row justify-between">
     <div class="w-10 flex flex-col items-start">
       <%= link_to "#", class: "block text-center" do %>
         <%= render_svg "icons/up-vote", styles: "fill-current text-gray-500 w-4 h-4" %>
-      <% end %>      
-      <span class="text-gray-700 text-center block text-sm -ml-[5px]">123</span>  
+      <% end %>
+      <span class="text-gray-700 text-center block text-sm -ml-[5px]">123</span>
       <%= link_to "#", class: "block text-center" do  %>
         <%= render_svg "icons/down-vote", styles: "fill-current text-gray-500 w-4 h-4" %>
-      <% end %>  
+      <% end %>
     </div>
     <div class="flex-1">
       <p class="text-sm text-gray-600 mb-3">Posted by <%= @submission.user.username  %> <%= time_ago_in_words(@submission.created_at) %> ago </p>
@@ -19,10 +17,9 @@
       <div class="prose prose-lg prose-indigo mb-6">
         <%= simple_format @submission.body %>
       </div>
-
-      <%# Submission data%>  
+      <%# Submission data%>
       <div class="flex items-center space-x-5 mt-6">
-        <div class="flex items-center space-x-2     ">
+        <div class="flex items-center space-x-2 mr-2">
           <%= render_svg "icons/conversation", styles: "w-5 fill-current text-gray-500"  %>
           <p>3 comments</p>
         </div>
@@ -35,19 +32,31 @@
             <span class="sr-only">Delete this submission</span>
             <%= render_svg "icons/delete", styles: "w-5 fill-current text-gray-500 mt-1 group-hover:text-red-600" %>
           <% end %>
-        <% end %>                
+        <% end %>
       </div>
-
-
-
     </div>
   </div>
-<% end %>
 
-<% content_for :secondary_content do %>
+  <div class="mt-6 pt-6 border-t border-gray-300">
+    <% if user_signed_in? %>
+      <div id="<%= dom_id(@submission)%>_comments_form">
+        <%= render "comments/form", comment: Comment.new %>
+      </div>
+    <% else %>
+      <div class="bg-gray-50 rounded p-4 mt-6 text-center">
+        <%= link_to "Login to reply", new_user_session_path, class:"text-indigo-600 underline" %>
+      </div>
+    <% end %>
+    <h3 class="font-bold mt-6">Comments</h3>
+    <div id="<%= dom_id(@submission) %>_comments">
+      <% if @submission.comments.any? %>
+        <%= render @submission.comments %>
+      <% end %>
+    </div>
+  </div>
   
-  <%= render "communities/sidebar", community: @submission.community   %>
-
 <% end %>
-
+<% content_for :secondary_content do %>
+  <%= render "communities/sidebar", community: @submission.community   %>
+<% end %>
 <%= render "basic_layout" %>
