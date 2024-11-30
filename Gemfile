@@ -69,3 +69,7 @@ gem "devise", "~> 4.9"
 gem "foreman", "~> 0.88.1"
 
 gem "inline_svg", "~> 1.10"
+
+gem "htmlbeautifier"
+
+gem "image_magick", "~> 0.1.9"

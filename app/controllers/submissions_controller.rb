@@ -1,6 +1,6 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: %i[ index show ]
+  before_action :authenticate_user!, except: %i[ index show]
 
   # GET /submissions or /submissions.json
   def index
@@ -20,9 +20,14 @@ class SubmissionsController < ApplicationController
   def edit
   end
 
+  def mostrar
+    @submission = Submission.find(1)
+  end
+
   # POST /submissions or /submissions.json
   def create
     @submission = Submission.new(submission_params)
+    @submission.user_id = current_user.id
 
     respond_to do |format|
       if @submission.save
@@ -66,6 +71,6 @@ class SubmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def submission_params
-      params.expect(submission: [ :title, :body, :url, :media, :user_id ])
+      params.expect(submission: [ :title, :body, :url, :media, :community_id ])
     end
 end
