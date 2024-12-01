@@ -1,6 +1,7 @@
 <%= turbo_frame_tag comment do %>
 
-<div class="border p-4 rounded my-4">
+<div class="border p-4 rounded my-4 flex items-center ">
+  <%= render "comments/voting", submission: @submission, comment: comment %>
   <p class="font-semibold">
     <%= comment.user.username %>
   </p>

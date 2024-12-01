@@ -2,7 +2,7 @@
 
   <div class="py-3 flex items-start flex-wrap">
 
-    <%= render "voting", submission: submission %>
+    <%= render "submissions/voting", submission: submission %>
 
     <% if submission.media.attached? %>      
       <div class="w-2/12">  
@@ -11,7 +11,7 @@
           <% if submission.media.video? %>
             <%= video_tag submission.media %>
           <% else %>
-            <%= image_tag submission.media, alt: submission.title, class:"w-400 h-auto rounded" %>
+            <%= image_tag submission.media, alt: submission.title, class:"w-400 h-auto rounded" %>    
           <% end %>
 
         <% end %>

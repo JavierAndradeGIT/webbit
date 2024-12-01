@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
+  include ActionView::RecordIdentifier
   before_action :authenticate_user!
-  before_action :set_comment, only: [ :edit, :update, :destroy, :show  ]
+  before_action :set_comment, only: [ :edit, :update, :destroy, :show, :upvote, :downvote ]
   before_action :set_submission
+
 
   def new
   end
@@ -45,9 +47,27 @@ class CommentsController < ApplicationController
   end
 
   def upvote
+    respond_to do |format|
+      unless current_user.voted_for? @comment
+        @comment.upvote_by current_user
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{dom_id(@comment)}_votes_count", @comment.total_vote_count) }
+        format.html { redirect_back(fallback_location: root_path) }
+      else
+        format.html { redirect_to submission_path(@submission), alert: "You already voted for this comment." }
+      end
+    end
   end
 
   def downvote
+    respond_to do |format|
+      unless current_user.voted_for? @comment
+        @comment.downvote_by current_user
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{dom_id(@comment)}_votes_count", @comment.total_vote_count) }
+        format.html { redirect_back(fallback_location: root_path) }
+      else
+        format.html { redirect_to submission_path(@submission), alert: "You already voted for this comment." }
+      end
+    end
   end
 
   private
