@@ -21,3 +21,4 @@
 .btn-white{
     @apply bg-white text-gray-800 py-2 px-4 border border-gray-400 rounded shadow-sm hover:bg-gray-50;
 }
+

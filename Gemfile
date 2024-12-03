@@ -77,3 +77,5 @@ gem "image_magick", "~> 0.1.9"
 gem "byebug", "~> 11.1", ">= 11.1.3"
 
 gem "acts_as_votable", "~> 0.14.0"
+
+gem "validate_url"

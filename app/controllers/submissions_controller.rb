@@ -5,11 +5,19 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions or /submissions.json
   def index
-    @submissions = Submission.all
+    if user_signed_in?
+      @feed_title = "My feed"
+      @submissions = current_user.subscribed_submissions
+    else
+      @feed_title = "Select a community"
+      @submissions = Submission.all
+    end
   end
 
   # GET /submissions/1 or /submissions/1.json
   def show
+    @community = @submission.community
+    @subscription = @community.subscriptions.where(user: current_user).first
   end
 
   # GET /submissions/new

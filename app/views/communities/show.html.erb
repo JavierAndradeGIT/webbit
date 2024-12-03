@@ -4,7 +4,9 @@
 
 <% content_for :primary_content do %>
   <% @community.submissions.each do |submission| %>
-    <%= render "submissions/submission", submission: submission %>
+    <ul class="list-style-type:none">
+      <%= render "submissions/submission", submission: submission %>
+    </ul>
   <% end %>
   
 <% end %>

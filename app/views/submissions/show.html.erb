@@ -17,11 +17,21 @@
       <% end %>
       
       
+      
+      <% if @submission.body? %>        
+        <div class="prose prose-lg prose-indigo mb-6">
+          <%= simple_format @submission.body %>
+        </div>  
+      <% end %>
+      
+      <% if @submission.url? %>
+        <%= link_to truncate(@submission.url, length: 100), @submission.url, class: "text-gray-700 font-mono text-indigo-500 hover:underline", target: :_blank   %>
+      <% end %>
+      
+      
 
-      <div class="prose prose-lg prose-indigo mb-6">
-        <%= simple_format @submission.body %>
-      </div>
       <%# Submission data%>
+
       <div class="flex items-center space-x-5 mt-6">
         <div class="flex items-center space-x-2 mr-2">
           <%= render_svg "icons/conversation", styles: "w-5 fill-current text-gray-500"  %>

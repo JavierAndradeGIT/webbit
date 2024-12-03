@@ -7,10 +7,14 @@ class User < ApplicationRecord
   has_many :submissions, dependent: :destroy
   has_many :comments
 
+  has_many :subscriptions
+  has_many :communities, through: :subscriptions
 
 
   validates_uniqueness_of :username
   validates_presence_of :username
+
+  has_many :subscribed_submissions, through: :communities, source: :submissions
 
   acts_as_voter
 end

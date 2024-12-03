@@ -2,7 +2,7 @@
 <% content_for :primary_content do %>
   <% if @communities.any? %>
     <h1 class="text-3xl font-bold mb-6">Communities</h1>
-    <ul class="divide-y" id="communities">
+    <ul class="divide-y list-style-type:none" id="communities">
       <% @communities.each do |community| %>
         <%= render community %>
       <% end %>
