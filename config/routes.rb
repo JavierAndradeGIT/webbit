@@ -1,4 +1,8 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => "/sidekiq"
+
   resources :communities do
     resources :subscriptions, only: [ :create, :destroy ]
   end
@@ -17,9 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get "submissions/unsubscribe/:unsubscribe_hash" => "submissions#unsubscribe", as: :comment_unsubscribe
+
   devise_for :users
   root "submissions#index"
-  resources :profiles, only: :show
 
-  get "/pepito", to: "submissions#mostrar"
+  resources :profiles, only: :show
 end

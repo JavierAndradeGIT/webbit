@@ -12,7 +12,7 @@
       <%= render_svg "icons/down-vote", styles: "fill-current text-gray-500 w-4 h-4" %>
     <% end %>
   <% else %>
-    <%= link_to new_user_session_path, class: "block text-center" do %>
+    <%= link_to new_user_session_path, class: "block text-center", data: { turbo: false } do %>
       <%= render_svg "icons/up-vote", styles: "fill-current text-gray-500 w-4 h-4" %>
     <% end %>
     <div class="flex justify-center pl-1">
@@ -20,7 +20,7 @@
         <%= comment.total_vote_count %>
       </span>
     </div>
-    <%= link_to new_user_session_path,  class: "block text-center" do  %>
+    <%= link_to new_user_session_path,  class: "block text-center", data: { turbo: false } do  %>
       <%= render_svg "icons/down-vote", styles: "fill-current text-gray-500 w-4 h-4" %>
     <% end %>
   <% end %>

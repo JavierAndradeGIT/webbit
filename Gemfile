@@ -56,6 +56,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "letter_opener", "~> 1.10"
 end
 
 group :test do
@@ -79,3 +80,7 @@ gem "byebug", "~> 11.1", ">= 11.1.3"
 gem "acts_as_votable", "~> 0.14.0"
 
 gem "validate_url"
+
+gem "sidekiq", "~> 7.3"
+
+gem "redis", "~> 5.3"
