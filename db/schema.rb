@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2024_12_04_093409) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,8 +44,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_093409) do
 
   create_table "comments", force: :cascade do |t|
     t.text "reply"
-    t.integer "submission_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "submission_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["submission_id"], name: "index_comments_on_submission_id"
@@ -54,7 +57,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_093409) do
     t.string "title"
     t.text "description"
     t.text "sidebar"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_communities_on_name", unique: true
@@ -65,17 +68,17 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_093409) do
     t.string "title"
     t.text "body"
     t.string "url"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "community_id", null: false
+    t.bigint "community_id", null: false
     t.index ["community_id"], name: "index_submissions_on_community_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "community_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "community_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["community_id"], name: "index_subscriptions_on_community_id"
@@ -100,9 +103,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_093409) do
 
   create_table "votes", force: :cascade do |t|
     t.string "votable_type"
-    t.integer "votable_id"
+    t.bigint "votable_id"
     t.string "voter_type"
-    t.integer "voter_id"
+    t.bigint "voter_id"
     t.boolean "vote_flag"
     t.string "vote_scope"
     t.integer "vote_weight"
@@ -117,8 +120,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_093409) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "submissions"
-  add_foreign_key "comments", "users"
-  add_foreign_key "communities", "users"
   add_foreign_key "submissions", "communities"
   add_foreign_key "submissions", "users"
   add_foreign_key "subscriptions", "communities"

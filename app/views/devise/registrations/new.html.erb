@@ -22,7 +22,7 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input" %>
     </div>
     <div class="actions">
-      <%= f.submit "Sign up", class:"btn btn-indigo w-full"%>
+      <%= f.submit "Sign up", class:"btn btn-indigo w-full", data:{turbo: false}%>
     </div>
   <% end %>
   <div class="my-6">
