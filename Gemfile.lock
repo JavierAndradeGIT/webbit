@@ -403,7 +403,7 @@ PLATFORMS
   arm-linux-gnu
   arm-linux-musl
   arm64-darwin
-  ruby
+  ruby (3.3.0 )
   x86-linux
   x86-linux-gnu
   x86-linux-musl
