@@ -84,3 +84,5 @@ gem "validate_url"
 gem "sidekiq", "~> 7.3"
 
 gem "redis", "~> 5.3"
+
+ruby "3.3.0"
