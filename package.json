@@ -10,7 +10,11 @@
     "postcss-import": "^16.1.0",
     "postcss-nesting": "13.0.1"
   },
-  "scripts": {
+  "buildpacks": [
+    { "url": "https://github.com/heroku/heroku-buildpack-nodejs" },
+    { "url": "https://github.com/heroku/heroku-buildpack-ruby" }
+  ],
+  "s    cripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwind --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   },
