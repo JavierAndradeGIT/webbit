@@ -403,7 +403,7 @@ PLATFORMS
   arm-linux-gnu
   arm-linux-musl
   arm64-darwin
-  ruby (3.3.0 )
+  unknown
   x86-linux
   x86-linux-gnu
   x86-linux-musl
@@ -447,6 +447,9 @@ DEPENDENCIES
   tzinfo-data
   validate_url
   web-console
+
+RUBY VERSION
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.5.3
