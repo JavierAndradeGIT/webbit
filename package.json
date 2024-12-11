@@ -15,7 +15,7 @@
     { "url": "https://github.com/heroku/heroku-buildpack-ruby" }
   ],
   "scripts": {
-    "install": "npm install", 
+    "install": "npm install",   
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwind --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"         
   },
